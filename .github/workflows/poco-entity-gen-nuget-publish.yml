@@ -26,17 +26,17 @@ jobs:
       run: cd src/PocoEntity/SkyHigh.PocoEntity.Generator
         
     - name: Restore dependencies
-      run: dotnet restore SkyHigh.PocoEntity.sln
+      run: dotnet restore src/PocoEntity/SkyHigh.PocoEntity.sln
       
     - name: Build
-      run: dotnet build SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-restore
+      run: dotnet build src/PocoEntity/SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-restore
       
     - name: Test
-      run: dotnet test SkyHigh.PocoEntity.sln --configuration Release --no-build --verbosity normal
+      run: dotnet test src/PocoEntity/SkyHigh.PocoEntity.sln --configuration Release --no-build --verbosity normal
       continue-on-error: true
       
     - name: Pack
-      run: dotnet pack SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output ./nuget-packages
+      run: dotnet pack src/PocoEntity/SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output ./nuget-packages
       
     - name: Upload NuGet package as artifact
       uses: actions/upload-artifact@v3
