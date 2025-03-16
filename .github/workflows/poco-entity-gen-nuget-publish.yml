@@ -22,6 +22,9 @@ jobs:
       with:
         dotnet-version: '9.0.x'
         
+    - name: Go to SkyHigh.PocoEntity.Generator directory
+      run: cd src/PocoEntity/SkyHigh.PocoEntity.Generator
+        
     - name: Restore dependencies
       run: dotnet restore SkyHigh.PocoEntity.sln
       
