@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Profile 1": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SkyHigh.PocoEntity.Demo\\SkyHigh.PocoEntity.Demo.csproj"
+    }
+  }
+}
