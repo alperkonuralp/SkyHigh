@@ -13,17 +13,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0 # Fetch all history for GitVersion
         
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
         
-    - name: Go to SkyHigh.PocoEntity.Generator directory
-      run: cd src/PocoEntity/SkyHigh.PocoEntity.Generator
+    # The cd command in a separate step doesn't persist between steps
+    # Instead, we'll use full paths for all commands
         
     - name: Restore dependencies
       run: dotnet restore src/PocoEntity/SkyHigh.PocoEntity.sln
@@ -39,7 +39,7 @@ jobs:
       run: dotnet pack src/PocoEntity/SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output ./nuget-packages
       
     - name: Upload NuGet package as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
         path: ./nuget-packages/*.nupkg
@@ -51,13 +51,13 @@ jobs:
     
     steps:
     - name: Download NuGet packages
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: nuget-packages
         path: ./nuget-packages
         
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
         
