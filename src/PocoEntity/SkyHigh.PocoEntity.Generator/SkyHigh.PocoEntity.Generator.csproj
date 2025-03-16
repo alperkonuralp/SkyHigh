@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <IsPackable>false</IsPackable>
+    <IsPackable>true</IsPackable>
     <IsRoslynComponent>true</IsRoslynComponent>
 
     <OutputItemType>Analyzer</OutputItemType>
@@ -11,6 +11,16 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
 
+    <!-- NuGet Package Metadata -->
+    <PackageId>SkyHigh.PocoEntity.Generator</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Alper Konuralp</Authors>
+    <Description>A source generator for POCO entities based on JSON schema definitions.</Description>
+    <PackageTags>source-generator;entities;poco</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/alperkonuralp/SkyHigh</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
 
     <PackageScribanIncludeSource>true</PackageScribanIncludeSource>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
@@ -29,10 +39,10 @@
     <PackageReference Include="Scriban" Version="6.0.0" IncludeAssets="Build" />
   </ItemGroup>
 
-
   <!-- NuGet paketi için dll'leri dahil etmek için -->
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>

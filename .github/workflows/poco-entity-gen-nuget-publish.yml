@@ -1,0 +1,68 @@
+name: Build and Publish SkyHigh.PocoEntity.Generator NuGet Package
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Fetch all history for GitVersion
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore SkyHigh.PocoEntity.sln
+      
+    - name: Build
+      run: dotnet build SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-restore
+      
+    - name: Test
+      run: dotnet test SkyHigh.PocoEntity.sln --configuration Release --no-build --verbosity normal
+      continue-on-error: true
+      
+    - name: Pack
+      run: dotnet pack SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output nuget-packages
+      
+    - name: Upload NuGet package as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: nuget-packages
+        path: nuget-packages/*.nupkg
+        
+  publish:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download NuGet packages
+      uses: actions/download-artifact@v3
+      with:
+        name: nuget-packages
+        path: nuget-packages
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x'
+        
+    - name: Publish to NuGet
+      run: |
+        # Extract version from tag name (removes 'v' prefix)
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "Publishing version $VERSION to NuGet"
+        
+        # Push the package to NuGet
+        dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
