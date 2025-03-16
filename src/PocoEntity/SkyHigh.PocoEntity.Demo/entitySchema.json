@@ -1,0 +1,754 @@
+{
+  "name": "SkyHigh.PocoEntity.Demo",
+  "version": "1.0.0",
+  "description": "This is a demo schema for SkyHigh PocoEntity.",
+  "baseNamespace": "SkyHigh.PocoEntity.Demo.Domain.Entities",
+  "baseTypes": [
+    {
+      "name": "EntityBase",
+      "typeParameters": [ "TId", "TUserId" ],
+      "summary": "Base class for all entities.",
+      "isAbstract": true,
+      "typeFilters": {
+        "TId": "struct",
+        "TUserId": "struct"
+      },
+      "interfaces": [ "IEntity<TId, TUserId>" ],
+      "properties": [
+        {
+          "name": "Id",
+          "type": "TId",
+          "summary": "Unique identifier for the entity.",
+          "specialType": "PrimaryKey",
+          "isRequired": true
+        },
+        {
+          "name": "CreatedAt",
+          "type": "DateTimeOffset",
+          "summary": "The date and time when the entity was created.",
+          "specialType": "CreatedAt",
+          "isRequired": true
+        },
+        {
+          "name": "CreatedBy",
+          "type": "TUserId",
+          "summary": "The user who created the entity.",
+          "isRequired": true
+        },
+        {
+          "name": "ModifiedAt",
+          "type": "DateTimeOffset",
+          "summary": "The date and time when the entity was last modified.",
+          "specialType": "ModifiedAt",
+          "isRequired": true
+        },
+        {
+          "name": "ModifiedBy",
+          "type": "TUserId",
+          "summary": "The user who last modified the entity.",
+          "isRequired": true
+        },
+        {
+          "name": "IsDeleted",
+          "type": "bool",
+          "summary": "Indicates whether the entity is deleted.",
+          "defaultValue": "false",
+          "specialType": "IsDeleted",
+          "isRequired": true
+        },
+        {
+          "name": "SourceProviderKey",
+          "type": "string",
+          "summary": "The key of the source provider.",
+          "isRequired": false
+        },
+        {
+          "name": "SourceItemId",
+          "type": "string",
+          "summary": "The identifier of the entity in the source provider.",
+          "isRequired": false
+        },
+        {
+          "name": "SourceVersion",
+          "type": "string",
+          "summary": "The version of the entity in the source provider.",
+          "isRequired": false
+        },
+        {
+          "name": "ConcurrencyToken",
+          "type": "byte[]",
+          "summary": "A token for handling optimistic concurrency.",
+          "specialType": "ConcurrencyToken",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "interfaces": [
+    {
+      "name": "ISoftDeletable",
+      "summary": "Interface for soft deletable entities.",
+      "properties": [
+        {
+          "name": "IsDeleted",
+          "type": "bool",
+          "Summary": "Indicates whether the entity is deleted.",
+          "defaultValue": "false",
+          "specialType": "IsDeleted",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "ISourceTraceable",
+      "summary": "Interface for entities that are traceable to a source provider.",
+      "properties": [
+        {
+          "name": "SourceProviderKey",
+          "type": "string",
+          "summary": "The key of the source provider.",
+          "isRequired": false
+        },
+        {
+          "name": "SourceItemId",
+          "type": "string",
+          "summary": "The identifier of the entity in the source provider.",
+          "isRequired": false
+        },
+        {
+          "name": "SourceVersion",
+          "type": "string",
+          "summary": "The version of the entity in the source provider.",
+          "isRequired": false
+        }
+      ]
+    },
+    {
+      "name": "ITimestampable",
+      "summary": "Interface for entities that have timestamp properties.",
+      "properties": [
+        {
+          "name": "CreatedAt",
+          "type": "DateTimeOffset",
+          "summary": "The date and time when the entity was created.",
+          "isRequired": true
+        },
+        {
+          "name": "ModifiedAt",
+          "type": "DateTimeOffset",
+          "summary": "The date and time when the entity was last modified.",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "IEntity",
+      "typeParameters": [ "TId", "TUserId" ],
+      "interfaces": [ "ISoftDeletable", "ISourceTraceable", "ITimestampable" ],
+      "summary": "Interface for entities.",
+      "properties": [
+        {
+          "name": "Id",
+          "type": "TId",
+          "summary": "Unique identifier for the entity.",
+          "isRequired": true
+        },
+        {
+          "name": "CreatedBy",
+          "type": "TUserId",
+          "summary": "The user who created the entity.",
+          "isRequired": true
+        },
+        {
+          "name": "ModifiedBy",
+          "type": "TUserId",
+          "summary": "The user who last modified the entity.",
+          "isRequired": true
+        },
+        {
+          "name": "ConcurrencyToken",
+          "type": "byte[]",
+          "summary": "A token for handling optimistic concurrency.",
+          "isRequired": false
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "name": "Tenant",
+      "baseType": "EntityBase<Guid, Guid>",
+      "specialType": "Tenant",
+      "properties": [
+        {
+          "name": "Name",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 100
+        },
+        {
+          "name": "ShortName",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 20
+        },
+        {
+          "name": "Description",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 500
+        },
+        {
+          "name": "IsActive",
+          "type": "bool",
+          "defaultValue": "true",
+          "isRequired": true
+        },
+        {
+          "name": "ContactEmail",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 256
+        },
+        {
+          "name": "PrimaryColor",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 10
+        },
+        {
+          "name": "LogoUrl",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 1024
+        },
+        {
+          "name": "SubscriptionStartDate",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        },
+        {
+          "name": "SubscriptionEndDate",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Users",
+          "entityType": "User",
+          "isCollection": true,
+          "foreignKeyEntity": "User",
+          "foreignKeyProperty": "TenantId"
+        },
+        {
+          "name": "Projects",
+          "entityType": "Project",
+          "isCollection": true,
+          "foreignKeyEntity": "Project",
+          "foreignKeyProperty": "TenantId"
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "baseType": "EntityBase<Guid, Guid>",
+      "specialType": "User",
+      "properties": [
+        {
+          "name": "TenantId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "Username",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 50
+        },
+        {
+          "name": "Email",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 256
+        },
+        {
+          "name": "FirstName",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 100
+        },
+        {
+          "name": "LastName",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 100
+        },
+        {
+          "name": "IsActive",
+          "type": "bool",
+          "defaultValue": "true",
+          "isRequired": true
+        },
+        {
+          "name": "LastLoginAt",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        },
+        {
+          "name": "AvatarUrl",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 1024
+        },
+        {
+          "name": "PreferredLanguage",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 10
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Tenant",
+          "entityType": "Tenant",
+          "isCollection": false,
+          "foreignKeyName": "FK_User_Tenant",
+          "foreignKeyProperty": "TenantId"
+        },
+        {
+          "name": "OwnedProjects",
+          "entityType": "Project",
+          "isCollection": true,
+          "foreignKeyName": "FK_Project_User_Owner",
+          "foreignKeyEntity": "Project",
+          "foreignKeyProperty": "OwnerId"
+        },
+        {
+          "name": "Assignments",
+          "entityType": "TaskAssignment",
+          "isCollection": true,
+          "foreignKeyName": "FK_TaskAssignment_User",
+          "foreignKeyEntity": "TaskAssignment",
+          "foreignKeyProperty": "UserId"
+        }
+      ]
+    },
+    {
+      "name": "Project",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "TenantId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "OwnerId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 100
+        },
+        {
+          "name": "Description",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 1000
+        },
+        {
+          "name": "StartDate",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        },
+        {
+          "name": "EndDate",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        },
+        {
+          "name": "Status",
+          "type": "ProjectStatus",
+          "isRequired": true,
+          "defaultValue": "ProjectStatus.Planning"
+        },
+        {
+          "name": "Priority",
+          "type": "int",
+          "isRequired": true,
+          "defaultValue": "1"
+        },
+        {
+          "name": "Budget",
+          "type": "decimal",
+          "isRequired": false
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Tenant",
+          "entityType": "Tenant",
+          "isCollection": false,
+          "foreignKeyProperty": "TenantId"
+        },
+        {
+          "name": "Owner",
+          "entityType": "User",
+          "isCollection": false,
+          "foreignKeyProperty": "OwnerId"
+        },
+        {
+          "name": "Tasks",
+          "entityType": "Task",
+          "isCollection": true,
+          "foreignKeyEntity": "Task",
+          "foreignKeyProperty": "ProjectId"
+        },
+        {
+          "name": "Categories",
+          "entityType": "Category",
+          "isCollection": true,
+          "foreignKeyEntity": "Category",
+          "foreignKeyProperty": "ProjectId"
+        }
+      ]
+    },
+    {
+      "name": "Category",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "ProjectId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "Name",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 50
+        },
+        {
+          "name": "Description",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 500
+        },
+        {
+          "name": "Color",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 10
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Project",
+          "entityType": "Project",
+          "isCollection": false,
+          "foreignKeyProperty": "ProjectId"
+        },
+        {
+          "name": "Tasks",
+          "entityType": "Task",
+          "isCollection": true,
+          "foreignKeyEntity": "Task",
+          "foreignKeyProperty": "CategoryId"
+        }
+      ]
+    },
+    {
+      "name": "Task",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "ProjectId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "CategoryId",
+          "type": "Guid",
+          "isRequired": false
+        },
+        {
+          "name": "ParentTaskId",
+          "type": "Guid",
+          "isRequired": false
+        },
+        {
+          "name": "Title",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 200
+        },
+        {
+          "name": "Description",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 2000
+        },
+        {
+          "name": "Status",
+          "type": "TaskStatus",
+          "isRequired": true,
+          "defaultValue": "TaskStatus.ToDo"
+        },
+        {
+          "name": "Priority",
+          "type": "TaskPriority",
+          "isRequired": true,
+          "defaultValue": "TaskPriority.Medium"
+        },
+        {
+          "name": "DueDate",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        },
+        {
+          "name": "EstimatedHours",
+          "type": "decimal",
+          "isRequired": false
+        },
+        {
+          "name": "ActualHours",
+          "type": "decimal",
+          "isRequired": false
+        },
+        {
+          "name": "CompletedAt",
+          "type": "DateTimeOffset",
+          "isRequired": false
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Project",
+          "entityType": "Project",
+          "isCollection": false,
+          "foreignKeyProperty": "ProjectId"
+        },
+        {
+          "name": "Category",
+          "entityType": "Category",
+          "isCollection": false,
+          "foreignKeyProperty": "CategoryId"
+        },
+        {
+          "name": "ParentTask",
+          "entityType": "Task",
+          "isCollection": false,
+          "foreignKeyProperty": "ParentTaskId"
+        },
+        {
+          "name": "SubTasks",
+          "entityType": "Task",
+          "isCollection": true,
+          "foreignKeyEntity": "Task",
+          "foreignKeyProperty": "ParentTaskId"
+        },
+        {
+          "name": "Assignments",
+          "entityType": "TaskAssignment",
+          "isCollection": true,
+          "foreignKeyEntity": "TaskAssignment",
+          "foreignKeyProperty": "TaskId"
+        },
+        {
+          "name": "Comments",
+          "entityType": "Comment",
+          "isCollection": true,
+          "foreignKeyEntity": "Comment",
+          "foreignKeyProperty": "TaskId"
+        },
+        {
+          "name": "Attachments",
+          "entityType": "Attachment",
+          "isCollection": true,
+          "foreignKeyEntity": "Attachment",
+          "foreignKeyProperty": "TaskId"
+        }
+      ]
+    },
+    {
+      "name": "TaskAssignment",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "TaskId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "UserId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "AssignedAt",
+          "type": "DateTimeOffset",
+          "isRequired": true
+        },
+        {
+          "name": "Role",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 50
+        },
+        {
+          "name": "Notes",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 500
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Task",
+          "entityType": "Task",
+          "isCollection": false,
+          "foreignKeyProperty": "TaskId"
+        },
+        {
+          "name": "User",
+          "entityType": "User",
+          "isCollection": false,
+          "foreignKeyProperty": "UserId"
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "TaskId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "ParentCommentId",
+          "type": "Guid",
+          "isRequired": false
+        },
+        {
+          "name": "Content",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 5000
+        },
+        {
+          "name": "IsEdited",
+          "type": "bool",
+          "defaultValue": "false",
+          "isRequired": true
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Task",
+          "entityType": "Task",
+          "isCollection": false,
+          "foreignKeyProperty": "TaskId"
+        },
+        {
+          "name": "ParentComment",
+          "entityType": "Comment",
+          "isCollection": false,
+          "foreignKeyProperty": "ParentCommentId"
+        },
+        {
+          "name": "Replies",
+          "entityType": "Comment",
+          "isCollection": true,
+          "foreignKeyEntity": "Comment",
+          "foreignKeyProperty": "ParentCommentId"
+        }
+      ]
+    },
+    {
+      "name": "Attachment",
+      "baseType": "EntityBase<Guid, Guid>",
+      "properties": [
+        {
+          "name": "TaskId",
+          "type": "Guid",
+          "isRequired": true
+        },
+        {
+          "name": "FileName",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 255
+        },
+        {
+          "name": "FileSize",
+          "type": "long",
+          "isRequired": true
+        },
+        {
+          "name": "ContentType",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 100
+        },
+        {
+          "name": "StoragePath",
+          "type": "string",
+          "isRequired": true,
+          "maxLength": 1024
+        },
+        {
+          "name": "Description",
+          "type": "string",
+          "isRequired": false,
+          "maxLength": 500
+        }
+      ],
+      "relationships": [
+        {
+          "name": "Task",
+          "entityType": "Task",
+          "isCollection": false,
+          "foreignKeyProperty": "TaskId"
+        }
+      ]
+    }
+  ],
+  "enums": [
+    {
+      "name": "ProjectStatus",
+      "baseType": "long",
+      "values": {
+        "Planning": 0,
+        "Active": 1,
+        "OnHold": 2,
+        "Completed": 3,
+        "Cancelled": 4
+      }
+    },
+    {
+      "name": "TaskStatus",
+      "values": {
+        "ToDo": 0,
+        "InProgress": 1,
+        "Review": 2,
+        "Blocked": 3,
+        "Completed": 4
+      }
+    },
+    {
+      "name": "TaskPriority",
+      "values": {
+        "Low": 0,
+        "Medium": 1,
+        "High": 2,
+        "Critical": 3
+      }
+    }
+  ]
+}
