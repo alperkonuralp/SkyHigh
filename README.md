@@ -75,3 +75,11 @@ To get started with SkyHigh Source Generators:
 
 Refer to the Demo projects in each solution for examples of how to set up and use the generators.
 
+## License
+
+This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - see the [LICENSE](LICENSE) file for details.
+
+Copyright (C) 2024 SkyHigh Contributors
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
