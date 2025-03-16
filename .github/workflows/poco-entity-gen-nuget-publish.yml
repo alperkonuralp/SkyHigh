@@ -33,13 +33,13 @@ jobs:
       continue-on-error: true
       
     - name: Pack
-      run: dotnet pack SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output nuget-packages
+      run: dotnet pack SkyHigh.PocoEntity.Generator/SkyHigh.PocoEntity.Generator.csproj --configuration Release --no-build --output ./nuget-packages
       
     - name: Upload NuGet package as artifact
       uses: actions/upload-artifact@v3
       with:
         name: nuget-packages
-        path: nuget-packages/*.nupkg
+        path: ./nuget-packages/*.nupkg
         
   publish:
     needs: build
@@ -51,7 +51,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: nuget-packages
-        path: nuget-packages
+        path: ./nuget-packages
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
@@ -65,4 +65,4 @@ jobs:
         echo "Publishing version $VERSION to NuGet"
         
         # Push the package to NuGet
-        dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        dotnet nuget push ./nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
