@@ -13,6 +13,7 @@ Comprehensive documentation for the SkyHigh framework is available in the `docs`
 ## Projects
 
 ### Demo Solution (Main Example)
+
 - **Solution File**: `src/Demo/SkyHigh.Demo.sln`
 - **Description**: This is a special comprehensive demo solution that showcases all generator projects integrated together with NuGet packages. This is the best starting point to understand how all components work together.
 - **Documentation**: [Demo Solution Guide](docs/DemoSolution.md)
@@ -27,14 +28,16 @@ Comprehensive documentation for the SkyHigh framework is available in the `docs`
       - OData controllers
 
 ### EntitySchemaParser
-- **Project File**: `SkyHigh.EntitySchemaParser.csproj`
+
+- **Project File**: `src/EntitySchemaParser/SkyHigh.EntitySchemaParser.csproj`
 - **Description**: This project is a .NET Standard 2.0 library that includes various entity schema parsing functionalities. It uses Roslyn for code analysis and generation.
 - **Dependencies**:
   - `Microsoft.CodeAnalysis.CSharp`
   - `Microsoft.CodeAnalysis.Analyzers`
 
 ### PocoEntity
-- **Solution File**: `SkyHigh.PocoEntity.sln`
+
+- **Solution File**: `src/PocoEntity/SkyHigh.PocoEntity.sln`
 - **Projects**:
   - **SkyHigh.PocoEntity.Generator**:
     - **Project File**: `SkyHigh.PocoEntity.Generator.csproj`
@@ -48,7 +51,8 @@ Comprehensive documentation for the SkyHigh framework is available in the `docs`
     - **Description**: This project serves as a demo application to showcase the usage of the generated POCO entities.
 
 ### Entity Framework Integration
-- **Solution File**: `SkyHigh.EF.sln`
+
+- **Solution File**: `src/EF/SkyHigh.EF.sln`
 - **Projects**:
   - **SkyHigh.EF.Generator**:
     - **Project File**: `SkyHigh.EF.Generator.csproj`
@@ -61,8 +65,31 @@ Comprehensive documentation for the SkyHigh framework is available in the `docs`
     - **Description**: Demo application demonstrating the usage of generated Entity Framework configurations.
 
 ### OData
+
 - **Description**: This project contains OData integration for schema-based entities.
 - **Path**: `src/OData/`
+
+### StaticProxy
+
+- **Solution File**: `src/StaticProxy/SkyHigh.StaticProxy.sln`
+- **Description**: A lightweight, high-performance .NET library that provides compile-time method interception through source generators for implementing Aspect-Oriented Programming (AOP) patterns without runtime overhead.
+- **Features**:
+  - Compile-Time Proxy Generation
+  - High Performance without runtime reflection overhead
+  - Aspect-Oriented Programming for cross-cutting concerns like logging and caching
+  - Seamless integration with Microsoft's Dependency Injection system
+  - Support for multiple interceptors and async methods
+- **Projects**:
+  - **SkyHigh.StaticProxy**:
+    - **Project File**: `SkyHigh.StaticProxy.csproj`
+    - **Description**: Core library for the static proxy implementation
+  - **SkyHigh.StaticProxy.Demo**:
+    - **Description**: Demo application showcasing the usage of static proxies
+  - **SkyHigh.StaticProxy.DemoServices**:
+    - **Description**: Sample services used by the demo application
+  - **SkyHigh.StaticProxy.Generator**:
+    - **Description**: Source generator for creating compile-time proxy classes
+- **Documentation**: [StaticProxy README](src/StaticProxy/README.md)
 
 ## Getting Started
 
@@ -82,4 +109,3 @@ This project is licensed under the GNU General Public License v3.0 (GPL-3.0) - s
 Copyright (C) 2024 SkyHigh Contributors
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-

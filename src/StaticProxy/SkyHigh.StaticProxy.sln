@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyHigh.StaticProxy", "SkyHigh.StaticProxy\SkyHigh.StaticProxy.csproj", "{38C2CCA7-3444-4D2A-B039-FA021D0CD848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyHigh.StaticProxy.Generator", "SkyHigh.StaticProxy.Generator\SkyHigh.StaticProxy.Generator.csproj", "{5D6421CC-B9AC-4D06-848D-78709FC9E278}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyHigh.StaticProxy.Demo", "SkyHigh.StaticProxy.Demo\SkyHigh.StaticProxy.Demo.csproj", "{C45E4C2C-E980-44B5-AB20-74D54D248E7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Core", "01 Core", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Generator", "02 Generator", "{1AD7D98E-9179-45EB-9449-BF365D610563}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Demo", "03 Demo", "{1B3F642E-BC79-4DDA-B8E9-AB00DAF6B129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkyHigh.StaticProxy.DemoServices", "SkyHigh.StaticProxy.DemoServices\SkyHigh.StaticProxy.DemoServices.csproj", "{E618E06C-35EB-4FAB-8266-261073B96745}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38C2CCA7-3444-4D2A-B039-FA021D0CD848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38C2CCA7-3444-4D2A-B039-FA021D0CD848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38C2CCA7-3444-4D2A-B039-FA021D0CD848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38C2CCA7-3444-4D2A-B039-FA021D0CD848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6421CC-B9AC-4D06-848D-78709FC9E278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6421CC-B9AC-4D06-848D-78709FC9E278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6421CC-B9AC-4D06-848D-78709FC9E278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6421CC-B9AC-4D06-848D-78709FC9E278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C45E4C2C-E980-44B5-AB20-74D54D248E7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C45E4C2C-E980-44B5-AB20-74D54D248E7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C45E4C2C-E980-44B5-AB20-74D54D248E7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C45E4C2C-E980-44B5-AB20-74D54D248E7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E618E06C-35EB-4FAB-8266-261073B96745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E618E06C-35EB-4FAB-8266-261073B96745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E618E06C-35EB-4FAB-8266-261073B96745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E618E06C-35EB-4FAB-8266-261073B96745}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38C2CCA7-3444-4D2A-B039-FA021D0CD848} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{5D6421CC-B9AC-4D06-848D-78709FC9E278} = {1AD7D98E-9179-45EB-9449-BF365D610563}
+		{C45E4C2C-E980-44B5-AB20-74D54D248E7E} = {1B3F642E-BC79-4DDA-B8E9-AB00DAF6B129}
+		{E618E06C-35EB-4FAB-8266-261073B96745} = {1B3F642E-BC79-4DDA-B8E9-AB00DAF6B129}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7630CBA0-F682-434C-9860-DFEAAC9E884D}
+	EndGlobalSection
+EndGlobal

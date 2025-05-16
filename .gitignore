@@ -31,3 +31,5 @@ _ReSharper*/
 .idea/
 #Nuget packages folder
 packages/
+/src/EF/Generated/
+src/EF/Generated
