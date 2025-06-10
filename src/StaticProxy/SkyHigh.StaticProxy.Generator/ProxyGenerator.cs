@@ -71,7 +71,7 @@ namespace SkyHigh.StaticProxy.Generator
                 string containingNamespaceName = methodSymbol.ContainingNamespace?.ToDisplayString() ?? string.Empty;
 
                 // Check if it's one of our target methods in the StaticProxy namespace
-                if (containingNamespaceName == "StaticProxy" && ProxyServiceMethods.Contains(methodName)
+                if (containingNamespaceName == "SkyHigh.StaticProxy" && ProxyServiceMethods.Contains(methodName)
                     && invocation.Expression is MemberAccessExpressionSyntax memberAccess
                     && memberAccess.Name is GenericNameSyntax genericName
                     && genericName.TypeArgumentList.Arguments.Count >= 2)

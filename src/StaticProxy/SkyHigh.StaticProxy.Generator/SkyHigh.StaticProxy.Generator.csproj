@@ -4,8 +4,27 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+
+    <OutputItemType>Analyzer</OutputItemType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>SkyHigh.StaticProxy.Generator</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Alper Konuralp</Authors>
+    <Description>A source generator for Static Proxy Class generation.</Description>
+    <PackageTags>source-generator;static;proxy</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/alperkonuralp/SkyHigh</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,7 +32,9 @@
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- NuGet paketi için dll'leri dahil etmek için -->
   <ItemGroup>
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\README.md" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SkyHigh.StaticProxy.Generator": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\SkyHigh.StaticProxy.Demo\\SkyHigh.StaticProxy.Demo.csproj"
+    }
+  }
+}
