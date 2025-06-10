@@ -5,7 +5,29 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>SkyHigh.StaticProxy</Title>
+    <Version>9.0.5</Version>
+    <Authors>SkyHigh Development Team</Authors>
+    <Description>SkyHigh.StaticProxy is a lightweight, high-performance .NET library that provides compile-time method interception through source generators. It allows you to implement Aspect-Oriented Programming (AOP) patterns without the runtime overhead of traditional dynamic proxies.</Description>
+    <PackageProjectUrl>https://github.com/alperkonuralp/SkyHigh</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/alperkonuralp/SkyHigh</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>StaticProxy;AOP</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
