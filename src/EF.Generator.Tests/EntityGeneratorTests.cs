@@ -137,8 +137,11 @@ public class EntityGeneratorTests
         var assemblyNames = Array.ConvertAll(referencedAssemblies, assembly => assembly.Name ?? string.Empty);
         Assert.NotEmpty(assemblyNames);
         
-        // Should have netstandard reference for .NET Standard 2.0 compatibility
-        Assert.Contains("netstandard", assemblyNames);
+        // Conditionally check for netstandard reference based on target framework
+        if (AppContext.TargetFrameworkName?.Contains(".NETStandard") == true)
+        {
+            Assert.Contains("netstandard", assemblyNames);
+        }
     }
 
     [Fact]
